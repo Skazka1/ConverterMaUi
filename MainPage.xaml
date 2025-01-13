@@ -1,0 +1,71 @@
+﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="Converter.Views.MainPage"
+             BackgroundColor="Green">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="DatePicker">
+                <Setter Property="HeightRequest" Value="50" />
+                <Setter Property="Margin" Value="0,10,0,10" />
+                <Setter Property="BackgroundColor" Value="White" />
+                <Setter Property="TextColor" Value="Black" />
+            </Style>
+            <Style TargetType="Entry">
+                <Setter Property="HeightRequest" Value="50" />
+                <Setter Property="Margin" Value="0,10,0,10" />
+                <Setter Property="BackgroundColor" Value="White" />
+                <Setter Property="TextColor" Value="Black" />
+            </Style>
+            <Style TargetType="Picker">
+                <Setter Property="HeightRequest" Value="50" />
+                <Setter Property="Margin" Value="0,10,0,10" />
+                <Setter Property="BackgroundColor" Value="White" />
+                <Setter Property="TextColor" Value="Black" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <StackLayout Padding="10" Spacing="20">
+        <Label Text="Конвертер валют" 
+               FontSize="18" 
+               HorizontalOptions="Center" 
+               TextColor="#333" 
+               FontAttributes="Bold" />
+
+        <Label Text="Выберите дату:" 
+               TextColor="#555" 
+               FontSize="12" />
+        <DatePicker 
+                MinimumDate="01/01/2020"
+                Date="{Binding SelectedDate}" />
+
+        <Label Text="Введите сумму:" 
+               TextColor="#555" 
+               FontSize="12" />
+        <Entry Keyboard="Numeric" 
+               Text="{Binding Amount}" />
+
+        <Label Text="Из какой валюты:" 
+               TextColor="#555" 
+               FontSize="12" />
+        <Picker 
+                ItemsSource="{Binding CurrencyRates}" 
+                SelectedItem="{Binding FromCurrency, Mode=TwoWay}" 
+                ItemDisplayBinding="{Binding Name}" />
+
+        <Label Text="В какую валюту:" 
+               TextColor="#555" 
+               FontSize="12" />
+        <Picker 
+                ItemsSource="{Binding CurrencyRates}" 
+                SelectedItem="{Binding ToCurrency, Mode=TwoWay}" 
+                ItemDisplayBinding="{Binding Name}" />
+
+        <Label Text="{Binding Result}" 
+               FontSize="Medium" 
+               TextColor="#007aff" 
+               HorizontalOptions="Center" 
+               Margin="0,20,0,0" />
+    </StackLayout>
+</ContentPage>
